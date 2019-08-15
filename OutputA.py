@@ -2,18 +2,17 @@ import numpy as np
 
 
 class OutputA:
-    # name
-    name = ""
-    # a list to store all the shape of output
-    output_shape = []
-    # a list to store all the output, the input is the initial output, i.e. output of layer 0
-    output = []
 
-    def __init__(self, name, output_shape=[]):
+    def __init__(self, name, shape=[]):
         self.name = name
-        if not len(output_shape) == 0:
-            self.output_shape = output_shape
-            self.output = np.zeros(output_shape)
+        self.shape = []
+        self.value = []
+        if not len(shape) == 0:
+            self.shape = shape
+            self.value = np.zeros(shape)
 
-    def set_output(self, output):
-        self.output = output
+
+    def set_value(self, output):
+        if not output.shape == self.shape:
+            raise ValueError(output.shape)
+        self.value = output
